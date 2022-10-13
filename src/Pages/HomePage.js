@@ -1,8 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import MiddleComponent from "../components/MiddleComponent";
 import { MainContent } from "../components/MainContent";
+import axios from"axios";
 function HomePage() {
+  const url="https://randomuser.me/api/";
+    const [datas,setDatas] = useState(null)
+    let content1=null
+    let content2=null
+    let content3=null
+    let content4=null
+    let content5=null
+    let content6=null
+    let content7=null
+
+    useEffect(()=>{
+        axios.get(url)
+            .then(response=>{
+                setDatas(response.data)
+            })
+
+    },[url])
+
+    if(datas){
+        content1 = 
+        <div className='text-4xl flex justify-center'>
+            <div className='mx-1'>
+            {datas.results[0].name.title}
+            .
+            </div>
+            <div className='mx-2'>
+            {datas.results[0].name.first} 
+            </div>
+            {datas.results[0].name.last} 
+        </div>
+
+        content2 =
+        <div className='text-4xl'>
+           {datas.results[0].email}
+        </div>
+
+        content3 =
+        <div className='text-4xl'>
+          {datas.results[0].dob.age}
+        </div>
+
+        content4=
+        <div className='text-4xl flex justify-center'>
+            <div className='mx-2'>
+            {datas.results[0].location.street.number}
+            </div>
+            {datas.results[0].location.street.name}
+        </div>
+
+        content5=
+        <div className='text-4xl'> 
+            {datas.results[0].phone}
+        </div>
+
+        content6 = 
+        <div className='text-4xl'>
+            {datas.results[0].login.password}
+        </div>
+
+        content7 = datas.results[0].picture.large
+
+    }
   return (
     <div className="">
       <div>
@@ -15,7 +78,7 @@ function HomePage() {
         />
       </div>
       <div>
-        <MainContent />
+        <MainContent name ={content1} email={content2} age={content3} location={content4} number={content5} password={content6} image={content7}/>
       </div>
     </div>
   );
