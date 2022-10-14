@@ -4,7 +4,8 @@ import MiddleComponent from "../components/MiddleComponent";
 import { MainContent } from "../components/MainContent";
 import axios from"axios";
 function HomePage() {
-  const url="https://randomuser.me/api/";
+
+    const url="https://randomuser.me/api/";
     const [datas,setDatas] = useState(null)
     let content1=null
     let content2=null

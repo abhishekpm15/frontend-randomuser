@@ -2,8 +2,7 @@ import React from "react";
 const MiddleComponent = (props) => {
   return (
     <div>
-      <div>
-        <div className="Heading text-4xl text-white pt-10 mb-5">
+        <div className="Heading text-4xl text-white pt-10 mb-5 w-full">
           {props.heading}
         </div>
         <p className="para text-xl text-white mb-3">{props.para}</p>
@@ -16,7 +15,6 @@ const MiddleComponent = (props) => {
           </svg>
           <div className="para2 text-sm my-1 text-gray-400">Follow us @randomapi</div>
         </div>
-      </div>
     </div>
   );
 };
