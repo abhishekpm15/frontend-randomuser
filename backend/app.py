@@ -7,14 +7,19 @@ from json import dumps
 from sqlite3 import connect, Row
 from uuid import uuid4
 
-def get_entry() -> dict:
+def get_entry(uuid: str="") -> dict:
     try:
         with connect("./static/db_final.db") as database_handle:
             database_handle.row_factory = Row
             cursor = database_handle.cursor()
-            cursor.execute("""
-                SELECT * FROM randomdb ORDER BY RANDOM() LIMIT 1
-            """)
+            if uuid:
+                cursor.execute("""
+                    SELECT * FROM randomdb WHERE uuid=\"%s\"
+                """%(uuid))
+            else:
+                cursor.execute("""
+                    SELECT * FROM randomdb ORDER BY RANDOM() LIMIT 1
+                """)
             data = cursor.fetchone()
         return dict(data)
     except Exception as error:
@@ -82,6 +87,10 @@ def root():
 @app.route("/get", methods=["GET"])
 def get_handle() -> dict:
     return get_entry()
+
+@app.route("/query/", methods=["GET"])
+def query_handle() -> dict:
+    return get_entry(request.args.get("uuid"))
 
 @app.route("/post", methods=["POST"])
 def post_handle() -> dict:

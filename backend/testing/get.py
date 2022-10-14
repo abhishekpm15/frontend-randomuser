@@ -2,11 +2,18 @@
 # Created on: 13/10/2022
 #
 # Flask Backend Server Tester - GET
-def main() -> int:
+def main(argv: list) -> int:
     from requests import get
 
+    URL = "http://127.0.0.1:5000"
+
+    if argv:
+        URL += "/query/?uuid=" + argv[0]
+    else:
+        URL += "/get"
     try:
-        request_handle = get(url="https://snab-app.herokuapp.com/get")
+        request_handle = get(url=URL)
+            
         print(request_handle.json())
 
         request_handle.close()
@@ -16,4 +23,6 @@ def main() -> int:
         return -1
 
 if __name__ == "__main__":
-    exit(main())
+    from sys import argv
+
+    exit(main(argv[1:]))
