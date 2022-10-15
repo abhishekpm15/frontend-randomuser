@@ -6,6 +6,7 @@ from flask import Flask, request, render_template
 from json import dumps
 from sqlite3 import connect, Row
 from uuid import uuid4
+from werkzeug.exceptions import HTTPException
 
 def get_entry(uuid: str="") -> dict:
     try:
@@ -90,7 +91,10 @@ def get_handle() -> dict:
 
 @app.route("/query/", methods=["GET"])
 def query_handle() -> dict:
-    return get_entry(request.args.get("uuid"))
+    if request.args.get("uuid"):
+        return get_entry(request.args.get("uuid"))
+    else:
+        return  {"query": None}
 
 @app.route("/post", methods=["POST"])
 def post_handle() -> dict:
@@ -103,6 +107,17 @@ def patch_handle() -> dict:
 @app.route("/delete", methods=["DELETE"])
 def delete_handle() -> dict:
     return {"delete": del_entry(request.get_json()["uuid"])}
+
+@app.errorhandler(HTTPException)
+def error_handle(error):
+    response = error.get_response()
+    response.data = dumps({
+        "code": error.code,
+        "name": error.name,
+        "description": error.description,
+    })
+    response.content_type = "application/json"
+    return response
 
 if __name__ == "__main__":
     app.run(debug=False)
