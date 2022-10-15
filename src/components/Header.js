@@ -13,7 +13,7 @@ const Header = () => {
         <div className="flex justify-center lg:flex-wrap">
           <div className="mx-6 my-1">
           <Link to="/HomePage">
-          <AiOutlineHome className="text-2xl mx-auto"/>
+          <AiOutlineHome className="text-2xl mx-auto "/>
           <div className="text-black">Home</div>
           </Link>
           </div>

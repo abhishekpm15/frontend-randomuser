@@ -7,6 +7,8 @@ import {
 import { FiUser } from "react-icons/fi";
 import { BsMap } from "react-icons/bs";
 import { useState } from "react";
+import { Button } from "@material-tailwind/react";
+import { useNavigate } from "react-router-dom";
 export const MainContent = (props) => {
   let contentnew = null;
   const [isUserHovering, setIsUserHovering] = useState(true);
@@ -24,9 +26,7 @@ export const MainContent = (props) => {
     setIsPassHovering(false);
     setIsUserHovering(true);
   };
-  // const handleUserOff = () =>{
-  //   setIsUserHovering(false)
-  // }
+
   const handleMail = () => {
     setIsUserHovering(false);
     setIsCalenderHovering(false);
@@ -35,9 +35,7 @@ export const MainContent = (props) => {
     setIsPassHovering(false);
     setIsMailHovering(true);
   };
-  // const handleMailOff = () => {
-  //   setIsMailHovering(false);
-  // };
+
   const handleCalender = () => {
     setIsMailHovering(false);
     setIsUserHovering(false);
@@ -46,9 +44,7 @@ export const MainContent = (props) => {
     setIsPassHovering(false);
     setIsCalenderHovering(true);
   };
-  // const handleCalenderOff = () => {
-  //   setIsCalenderHovering(false);
-  // };
+
   const handleMap = () => {
     setIsMailHovering(false);
     setIsCalenderHovering(false);
@@ -57,9 +53,7 @@ export const MainContent = (props) => {
     setIsPassHovering(false);
     setIsMapHovering(true);
   };
-  // const handleMapOff = () => {
-  //   setIsMapHovering(false);
-  // };
+
   const handlePhone = () => {
     setIsMailHovering(false);
     setIsCalenderHovering(false);
@@ -68,9 +62,7 @@ export const MainContent = (props) => {
     setIsPassHovering(false);
     setIsPhoneHovering(true);
   };
-  // const handlePhoneOff = () => {
-  //   setIsPhoneHovering(false);
-  // };
+
   const handlePass = () => {
     setIsMailHovering(false);
     setIsCalenderHovering(false);
@@ -79,9 +71,6 @@ export const MainContent = (props) => {
     setIsUserHovering(false);
     setIsPassHovering(true);
   };
-  // const handlePassOff = () => {
-  //   setIsPassHovering(false);
-  // };
 
   if (isUserHovering) {
     contentnew = (
@@ -109,13 +98,16 @@ export const MainContent = (props) => {
     );
   }
 
+  let navigate = useNavigate();
+
   return (
     <div className="bg-white -my-52 mx-[20%] -mx[20%]">
-      <div className="h-32 bg-gray-200"></div>
-      <img src={props.image} className="rounded-full -my-5" />
-      <div>
+      <div className="h-32 bg-gray-300">
+        <img src={props.image} className="rounded-full w-40 mx-[41%]" />
+      </div>
+      <div className="mt-16">
         <div className="h-10">{contentnew}</div>
-        <div className="h-10">
+        <div className="h-10 font-bold">
           {isUserHovering && <div className="Name text-4xl">{props.name}</div>}
           {isMailHovering && <div className="Name text-4xl">{props.email}</div>}
           {isCalenderHovering && (
@@ -132,69 +124,64 @@ export const MainContent = (props) => {
           )}
         </div>
       </div>
-      <div className="details-icon flex justify-center mt-10 ">
-        <div
-          className="mx-3 hover:text-blue-600"
-          onMouseOver={handleUser}
-          // onMouseOut={handleUserOff}
+      <div className="details-icon mt-6 flex absolute mx-[11%]">
+        <div className="mx-8 h-11 w-auto" onMouseOver={handleUser}>
+          {" "}
+            {" "}
+            <FiUser className="w-9 h-9 transition ease-in-out delay-75 hover:-translate-y-3 hover:scale-125 duration-300 hover:text-blue-500 " />
+        </div>
+        <div className="mx-8 h-11 w-auto" onMouseOver={handleMail}>
+          {" "}
+            {" "}
+            <AiOutlineMail className="w-9 h-9 transition ease-in-out delay-75 hover:-translate-y-3 hover:scale-125 duration-300 hover:text-blue-500 " />
+        </div>
+        <div className="mx-8  h-11 w-auto" onMouseOver={handleCalender}>
+            {" "}
+            <AiOutlineCalendar className="w-9 h-9 transition ease-in-out delay-75 hover:-translate-y-3 hover:scale-125 duration-300 hover:text-blue-500 " />
+        </div>
+        <div className="mx-8 h-11 w-auto" onMouseOver={handleMap}>
+            {" "}
+            <BsMap className="w-9 h-9 transition ease-in-out delay-75 hover:-translate-y-3 hover:scale-125 duration-300 hover:text-blue-500 " />
+        </div>
+        <div className="mx-8 h-11 w-auto" onMouseOver={handlePhone}>
+            {" "}
+            <AiOutlinePhone className="w-9 h-9 transition ease-in-out delay-75 hover:-translate-y-3 hover:scale-125 duration-300 hover:text-blue-500 " />
+        </div>
+        <div className="mx-8 h-11 w-auto " onMouseOver={handlePass}>
+            {" "}
+            <AiFillLock className="w-9 h-9 transition ease-in-out delay-75 hover:-translate-y-3 hover:scale-125 duration-300 hover:text-blue-500 " />
+        </div>
+      </div>
+      <div className="mt-[11%]">
+        <Button
+          className="mx-5"
+          onClick={() => {
+            navigate("/Create");
+          }}
         >
           {" "}
-          <a href="">
-            {" "}
-            <FiUser className="w-9 h-9" />
-          </a>
-        </div>
-        <div
-          className="mx-3 hover:text-blue-600"
-          onMouseOver={handleMail}
-          // onMouseOut={handleMailOff}
+          Create{" "}
+        </Button>
+
+        <Button
+          className="mx-5"
+          onClick={() => {
+            navigate("/Update");
+          }}
         >
           {" "}
-          <a href="">
-            {" "}
-            <AiOutlineMail className="w-9 h-9 mx-5" />
-          </a>
-        </div>
-        <div
-          className="mx-3 hover:text-blue-600"
-          onMouseOver={handleCalender}
-          // onMouseOut={handleCalenderOff}
+          Update{" "}
+        </Button>
+
+        <Button
+          className="mx-5"
+          onClick={() => {
+            navigate("/Delete");
+          }}
         >
-          <a href="">
-            {" "}
-            <AiOutlineCalendar className="w-9 h-9 mx-5" />
-          </a>
-        </div>
-        <div
-          className="mx-3 hover:text-blue-600"
-          onMouseOver={handleMap}
-          // onMouseOut={handleMapOff}
-        >
-          <a href="">
-            {" "}
-            <BsMap className="w-9 h-9 mx-5" />
-          </a>
-        </div>
-        <div
-          className="mx-3 hover:text-blue-600"
-          onMouseOver={handlePhone}
-          // onMouseOut={handlePhoneOff}
-        >
-          <a href="">
-            {" "}
-            <AiOutlinePhone className="w-9 h-9 mx-5" />
-          </a>
-        </div>
-        <div
-          className="mx-3 hover:text-blue-600"
-          onMouseOver={handlePass}
-          // onMouseOut={handlePassOff}
-        >
-          <a href="">
-            {" "}
-            <AiFillLock className="w-9 h-9 mx-5" />
-          </a>
-        </div>
+          {" "}
+          Delete{" "}
+        </Button>
       </div>
     </div>
   );
