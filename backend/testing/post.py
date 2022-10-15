@@ -15,7 +15,7 @@ def main() -> int:
                 json["name"]["first"],
                 json["name"]["last"])),
             "email": json["email"],
-            "gender": 'M' if json["gender"] == "male" else 'F',
+            json["login"]["password"],
             "dob": json["dob"]["date"].split('T')[0],
             "address": ", ".join((
                 str(json["location"]["street"]["number"]),

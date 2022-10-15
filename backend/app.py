@@ -39,7 +39,7 @@ def ins_entry(json: dict) -> bool:
                 uuid,
                 json["name"],
                 json["email"],
-                json["gender"],
+                json["password"],
                 json["dob"],
                 json["address"],
                 json["phone"],

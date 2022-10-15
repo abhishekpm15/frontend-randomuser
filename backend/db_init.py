@@ -22,7 +22,7 @@ def main() -> int:
             uuid CHAR(36) UNIQUE,
             name VARCHAR(50),
             email VARCHAR(50),
-            gender CHAR,
+            password VARCHAR(50),
             dob VARCHAR(10),
             address VARCHAR(150),
             phone VARCHAR(20),
@@ -43,7 +43,7 @@ def main() -> int:
                     datum["name"]["first"],
                     datum["name"]["last"])),
                 datum["email"],
-                'M' if datum["gender"] == "male" else 'F',
+                datum["login"]["password"],
                 datum["dob"]["date"].split('T')[0],
                 ", ".join((
                     str(datum["location"]["street"]["number"]),
@@ -59,8 +59,8 @@ def main() -> int:
         request_handle.close()
         database_handle.commit()
         database_handle.close()
-    except:
-        print("Error: Unknown error occured.")
+    except Exception as error:
+        print("Error:", error)
         return 1
     else:
         print(counter, "entries created. Exit.")
