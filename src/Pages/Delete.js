@@ -1,18 +1,28 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Header from "../components/Header";
 import { Context } from "../App";
 import axios from "axios";
 import { Button } from "@material-tailwind/react";
+import { Alert } from "@material-tailwind/react";
 const Delete = () => {
-  const datas = useContext(Context);
+  const datas2 = useContext(Context);
+  var [successresponse, setsuccessRespones] = useState(false);
+  let success = (
+    <div className="w-full">
+      <Alert color="green">Deleted Sucessfully!!</Alert>
+    </div>
+  );
   const handleClick = () => {
 
-    console.log(datas.name);
-    console.log(datas.uuid);
-    axios.delete("https://snab-backend.herokuapp.com/drop",{
-      "uuid": datas.uuid
+    console.log(datas2.name);
+    console.log(datas2.uuid)
+    axios.post("https://snab-backend.herokuapp.com/delete",{
+      "uuid": datas2.uuid
     }).then((response)=>{
       console.log(response)
+      if(response.status === 200){
+        setsuccessRespones(true);
+      }
     },(error)=>{
       console.log(error);
     })
@@ -21,8 +31,10 @@ const Delete = () => {
     <div className="bg-blue-gray-900 h-full">
       <div>
         <Header />
+        {successresponse ? <div>{success}</div> : <div></div>}
+
         <div className="mt-16">
-          <Button onClick={handleClick}>Delete User</Button>
+          <Button  onClick={handleClick} >Delete User</Button>
         </div>
       </div>
       <div className="flex justify-center mt-36"></div>

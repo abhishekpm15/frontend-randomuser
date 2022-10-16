@@ -182,6 +182,15 @@ export const MainContent = (props) => {
           {" "}
           Delete{" "}
         </Button>
+        <Button
+          className="mx-5"
+          onClick={() => {
+            navigate("/Search");
+          }}
+        >
+          {" "}
+          Search{" "}
+        </Button>
       </div>
     </div>
   );

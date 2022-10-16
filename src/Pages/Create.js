@@ -14,7 +14,6 @@ const Create = () => {
   const [val4 , setVal4] = useState(null)
   const [val5 , setVal5] = useState(null)
   const [val6 , setVal6] = useState(null)
-  const [uuid,setUuid]=useState(null)
   var [successresponse, setsuccessRespones] = useState(false);
   var [failresponse, setfailRespones] = useState(true);
   let fail = (
@@ -31,7 +30,6 @@ const Create = () => {
 
   const handleInput = () =>{
     setVal(document.getElementById("message").value);
-    setUuid(datas.uuid);
   }
   const handleInput2 = () =>{
     setVal2(document.getElementById("message2").value);
@@ -59,11 +57,7 @@ const Create = () => {
       "phone":val5,
     }).then((response)=>{
         console.log(response);
-        if (response.data.post === true) {
-          setsuccessRespones(response.data.post);
-          console.log(response);
-        }
-        if(uuid === null || val === null || val2=== null || val3 === null || val4=== null || val5 === null || val6=== null){
+        if( val === null || val2=== null || val3 === null || val4=== null || val5 === null || val6=== null){
           setfailRespones(false);
             console.log(failresponse);
             setTimeout(() => {
@@ -73,13 +67,13 @@ const Create = () => {
             }, 2000);
         }
         else{
-
+          setsuccessRespones(response.data.post);
+          console.log(response);
         }
         
     },(error)=>{
       console.log(error);
     })
-    console.log(uuid)
     console.log(val)
     console.log(val2)
     console.log(val3)
