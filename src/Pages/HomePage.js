@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext} from "react";
 import Header from "../components/Header";
 import MiddleComponent from "../components/MiddleComponent";
 import { MainContent } from "../components/MainContent";
-import axios from "axios";
-function HomePage() {
-  const url = "https://snab-app.herokuapp.com/get";
-  const [datas, setDatas] = useState(null);
+import {Context} from "../App"
+function HomePage(props) {
+  const datas = useContext(Context)
   let content1 = null;
   let content2 = null;
   let content3 = null;
@@ -13,13 +12,7 @@ function HomePage() {
   let content5 = null;
   let content6 = null;
   let content7 = null;
-
-  useEffect(() => {
-    axios.get(url).then((response) => {
-      setDatas(response.data);
-    });
-  }, [url]);
-
+ 
   if (datas) {
     console.log(datas);
     content1 = (
@@ -73,3 +66,4 @@ function HomePage() {
 }
 
 export default HomePage;
+
