@@ -25,8 +25,8 @@ function App() {
   }, [url]);
 
   return (
-    <Context.Provider value={datas}>
-      <div className="App">
+    <div className="App">
+      <Context.Provider value={datas}>
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -43,8 +43,8 @@ function App() {
             <Route path="/Delete" element={<Delete />} />
           </Routes>
         </Router>
-      </div>
-    </Context.Provider>
+      </Context.Provider>
+    </div>
   );
 }
 
