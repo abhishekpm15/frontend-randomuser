@@ -4,6 +4,7 @@ import { Context } from "../App";
 import { Button } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import axios from "axios";
+import { Alert } from "@material-tailwind/react";
 
 const Create = () => {
   const datas = useContext(Context);
@@ -14,6 +15,18 @@ const Create = () => {
   const [val5 , setVal5] = useState(null)
   const [val6 , setVal6] = useState(null)
   const [uuid,setUuid]=useState(null)
+  var [successresponse, setsuccessRespones] = useState(false);
+  var [failresponse, setfailRespones] = useState(true);
+  let fail = (
+    <div className="w-full">
+      <Alert color="red">No field should be empty !!</Alert>
+    </div>
+  );
+  let success = (
+    <div className="w-full">
+      <Alert color="green">Field Updated Succesfully !!</Alert>
+    </div>
+  );
 
 
   const handleInput = () =>{
@@ -46,9 +59,27 @@ const Create = () => {
       "phone":val5,
     }).then((response)=>{
         console.log(response);
+        if (response.data.post === true) {
+          setsuccessRespones(response.data.post);
+          console.log(response);
+        }
+        if(uuid === null || val === null || val2=== null || val3 === null || val4=== null || val5 === null || val6=== null){
+          setfailRespones(false);
+            console.log(failresponse);
+            setTimeout(() => {
+              setfailRespones({
+                failresponse: false,
+              });
+            }, 2000);
+        }
+        else{
+
+        }
+        
     },(error)=>{
       console.log(error);
     })
+    console.log(uuid)
     console.log(val)
     console.log(val2)
     console.log(val3)
@@ -63,6 +94,9 @@ const Create = () => {
       <div>
         <Header />
       </div>
+      {successresponse ? <div>{success}</div> : <div></div>}
+      {failresponse ? <div></div> : <div>{fail} </div>}
+
       <div className="flex justify-center mt-10">
         <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 w-[50%] ">
           <div className="mb-3 text-2xl"> Enter the Following Details</div>

@@ -9,13 +9,13 @@ const Delete = () => {
 
     console.log(datas.name);
     console.log(datas.uuid);
-  //   axios.delete("https://snab-backend.herokuapp.com/drop",{
-  //     "uuid": datas.uuid
-  //   }).then((response)=>{
-  //     console.log(response)
-  //   },(error)=>{
-  //     console.log(error);
-  //   })
+    axios.delete("https://snab-backend.herokuapp.com/drop",{
+      "uuid": datas.uuid
+    }).then((response)=>{
+      console.log(response)
+    },(error)=>{
+      console.log(error);
+    })
   };
   return (
     <div className="bg-blue-gray-900 h-full">
