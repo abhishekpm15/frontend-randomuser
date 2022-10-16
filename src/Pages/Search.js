@@ -11,6 +11,7 @@ const Search = () => {
 
   var [val, setVal] = useState(null);
   var [val2, setVal2] = useState(null);
+  const [actualData , setactualData] = useState(null);
   var [successresponse, setsuccessRespones] = useState(false);
   var [failresponse, setfailRespones] = useState(true);
 
@@ -50,28 +51,26 @@ const Search = () => {
   );
 
   const handleClick = () => {
-    axios.post("https://snab-backend.herokuapp.com/search", {
-        [uf]: val
+    axios
+      .post("https://snab-backend.herokuapp.com/search", {
+        [uf]: val,
       })
-      .then(
-        (response) => {
-            console.log(response);
-            if(val == null){
-                setfailRespones(false);
-                console.log(failresponse);
-                setTimeout(() => {
-                  setfailRespones({
-                    failresponse: false,
-                  });
-                }, 2000);
-            }
-           else  if (response.status === 200) {
-                setsuccessRespones(true);
-              }
-        })
-    };
-        
-
+      .then((response) => {
+        console.log(response);
+        if (val == null) {
+          setfailRespones(false);
+          console.log(failresponse);
+          setTimeout(() => {
+            setfailRespones({
+              failresponse: false,
+            });
+          }, 2000);
+        } else if (response.status === 200) {
+            setactualData(response.data);
+          setsuccessRespones(true);
+        }
+      });
+  };
 
   return (
     <div className="bg-blue-gray-900 h-full">
@@ -80,9 +79,9 @@ const Search = () => {
       </div>
       {successresponse ? <div>{success}</div> : <div></div>}
       {failresponse ? <div></div> : <div>{fail} </div>}
-      <div className="flex mt-36 ml-52">
+      <div className="flex mt-36 justify-center">
         <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 w-96">
-          <div className="mb-3"> Choose field to Search</div>
+          <div className="mb-7 text-xl font-bold "> Choose field to Search</div>
           <div className="mb-4">
             <select
               className="w-full p-2.5 text-black bg-white border rounded-md shadow-sm outline-none appearance-none focus:border-indigo-600"
@@ -120,6 +119,24 @@ const Search = () => {
             </Button>
           </div>
         </form>
+        {successresponse ?(
+        <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 w-96 ml-40">
+          <div className="text-xl font-bold mb-7">
+            Information about the person
+          </div>
+          <div className="float-left mb-2">Name : {actualData.name}</div>
+          <br></br>
+          <div className="float-left  mb-2">Date of Birth : {actualData.dob}</div>
+          <br></br>
+          <div className="float-left  mb-2">Email : {actualData.email}</div>
+          <br></br>
+          <div className="float-left  mb-2">Location : {actualData.address}</div>
+          <br></br>
+          <div className="float-left  mb-2">Phone number : {actualData.phone}</div>
+          <br></br>
+          <div className="float-left  mb-2  ">Password : {actualData.password}</div>
+        </form>
+        ) : <div></div>}
       </div>
     </div>
   );
