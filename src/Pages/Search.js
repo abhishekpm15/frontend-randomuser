@@ -67,6 +67,7 @@ const Search = () => {
           }, 2000);
         } else if (response.status === 200) {
             setactualData(response.data);
+            console.timeLog(uuid);
           setsuccessRespones(true);
         }
       });

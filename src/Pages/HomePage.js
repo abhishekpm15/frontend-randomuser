@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import MiddleComponent from "../components/MiddleComponent";
 import { MainContent } from "../components/MainContent";
 import {Context} from "../App"
-function HomePage(props) {
+function HomePage() {
   const datas = useContext(Context)
   let content1 = null;
   let content2 = null;

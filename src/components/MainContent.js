@@ -103,7 +103,7 @@ export const MainContent = (props) => {
   return (
     <div className="bg-white -my-52 mx-[20%] -mx[20%]">
       <div className="h-32 bg-gray-300">
-        <img src={props.image} className="rounded-full w-40 mx-[41%]" />
+        <img src={props.image} alt="img" className="rounded-full w-40 mx-[41%]" />
       </div>
       <div className="mt-16">
         <div className="h-10">{contentnew}</div>

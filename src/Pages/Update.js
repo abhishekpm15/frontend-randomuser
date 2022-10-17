@@ -5,7 +5,7 @@ import { Input } from "@material-tailwind/react";
 import { Context } from "../App";
 import axios from "axios";
 import { Alert } from "@material-tailwind/react";
-const Update = (props) => {
+const Update = () => {
   const datas = useContext(Context);
   const [uuid, setUudi] = useState(null);
 

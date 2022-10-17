@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Header from "../components/Header";
-import { Context } from "../App";
+// import { Context } from "../App";
 import { Button } from "@material-tailwind/react";
 import { Input } from "@material-tailwind/react";
 import axios from "axios";
 import { Alert } from "@material-tailwind/react";
 
 const Create = () => {
-  const datas = useContext(Context);
+  // const datas = useContext(Context);
   const [val , setVal] = useState(null)
   const [val2 , setVal2] = useState(null)
   const [val3 , setVal3] = useState(null)
