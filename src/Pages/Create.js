@@ -23,7 +23,7 @@ const Create = () => {
   );
   let success = (
     <div className="w-full">
-      <Alert color="green">Field Updated Succesfully !!</Alert>
+      <Alert color="green">Entry created Succesfully !!</Alert>
     </div>
   );
 
@@ -185,7 +185,7 @@ const Create = () => {
               type="button"
               onClick={handleClick}
             >
-              Update
+              Create
             </Button>
           </div>
         </form>

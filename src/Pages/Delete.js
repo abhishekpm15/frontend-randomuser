@@ -32,8 +32,8 @@ const Delete = () => {
       <div>
         <Header />
         {successresponse ? <div>{success}</div> : <div></div>}
-
-        <div className="mt-16">
+        <div className="text-2xl mt-10 text-white"> Are you sure , you want to delete this user ?</div>
+        <div className="mt-10">
           <Button  onClick={handleClick} >Delete User</Button>
         </div>
       </div>

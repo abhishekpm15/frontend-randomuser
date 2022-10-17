@@ -79,7 +79,7 @@ const Search = () => {
       </div>
       {successresponse ? <div>{success}</div> : <div></div>}
       {failresponse ? <div></div> : <div>{fail} </div>}
-      <div className="flex mt-36 justify-center">
+      <div className="flex mt-14 justify-center">
         <form className="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 w-96">
           <div className="mb-7 text-xl font-bold "> Choose field to Search</div>
           <div className="mb-4">
@@ -124,17 +124,19 @@ const Search = () => {
           <div className="text-xl font-bold mb-7">
             Information about the person
           </div>
-          <div className="float-left mb-2">Name : {actualData.name}</div>
+          <div className="flex-col float-left">
+          <div className="mb-2">Name : {actualData.name}</div>
           <br></br>
-          <div className="float-left  mb-2">Date of Birth : {actualData.dob}</div>
+          <div className="mb-2">Date of Birth : {actualData.dob}</div>
           <br></br>
-          <div className="float-left  mb-2">Email : {actualData.email}</div>
+          <div className="mb-2">Email : {actualData.email}</div>
           <br></br>
-          <div className="float-left  mb-2">Location : {actualData.address}</div>
+          <div className="mb-2">Location : {actualData.address}</div>
           <br></br>
-          <div className="float-left  mb-2">Phone number : {actualData.phone}</div>
+          <div className="mb-2">Phone number : {actualData.phone}</div>
           <br></br>
-          <div className="float-left  mb-2  ">Password : {actualData.password}</div>
+          <div className="mb-2  ">Password : {actualData.password}</div>
+          </div>
         </form>
         ) : <div></div>}
       </div>
