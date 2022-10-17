@@ -15,7 +15,7 @@ def main() -> int:
                 json["name"]["first"],
                 json["name"]["last"])),
             "email": json["email"],
-            json["login"]["password"],
+            "password": json["login"]["password"],
             "dob": json["dob"]["date"].split('T')[0],
             "address": ", ".join((
                 str(json["location"]["street"]["number"]),
@@ -36,7 +36,7 @@ def main() -> int:
         return 0
     except Exception as error:
         print("Error:", error)
-        return -1
+        return 1
 
 if __name__ == "__main__":
     exit(main())
